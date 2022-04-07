@@ -8,7 +8,6 @@ from rest_framework_simplejwt.views import (
 )
 
 from . import views
-# from .views import api_home
 
 
 urlpatterns = [

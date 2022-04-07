@@ -23,15 +23,14 @@ class ProductSerializer(serializers.ModelSerializer):
 
     owner = UserPublicSerializer(source='user', read_only=True)
     title = serializers.CharField(validators=[validators.validate_title, validators.unique_product_title])
-    body = serializers.CharField(source='content')
-    assigned_product = serializers.CharField()
+    content = serializers.CharField()
     class Meta:
         model = Product
         fields = [
             'owner',
             'pk',
             'title',
-            'body',
+            'content',
             'price',
             'sale_price',
             'public',
@@ -39,16 +38,3 @@ class ProductSerializer(serializers.ModelSerializer):
             'assigned_product',
             'endpoint',
         ]
-    def get_my_user_data(self, obj):
-        return {
-            "username": obj.user.username
-        }
-    def get_edit_url(self, obj):
-        request = self.context.get('request') # self.request
-        if request is None:
-            return None
-        return reverse("product-edit", kwargs={"pk": obj.pk}, request=request)
-    def get_assigned_product(self):
-        Product_Items = ['Tesla', 'Iphone', 'private jet', 'Macbook']
-        return random.choice(Product_Items)
-

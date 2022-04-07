@@ -3,8 +3,6 @@ from rest_framework.validators import UniqueValidator
 from .models import Product
 
 
-
-
 def validate_title(value):
     if " " in value.lower():
         raise serializers.ValidationError(f"'{value}'" + " contains whitespaces")
