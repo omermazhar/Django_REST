@@ -9,7 +9,7 @@ User = settings.AUTH_USER_MODEL # auth.User
 class ArticleManager(models.Manager):
     def public(self):
         now = timezone.now()
-        return self.get_queryset().filter(make_public=True, publish_date__lte=now)
+        return self.get_queryset().filter(make_public=True)
 
 
 class Article(models.Model):
