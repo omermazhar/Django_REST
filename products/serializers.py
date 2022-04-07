@@ -10,15 +10,6 @@ from .models import Product
 from . import validators
 
 
-class ProductInlineSerializer(serializers.Serializer):
-    url = serializers.HyperlinkedIdentityField(
-            view_name='product-detail',
-            lookup_field='pk',
-            read_only=True
-    )
-    title = serializers.CharField(read_only=True)
-
-
 class ProductSerializer(serializers.ModelSerializer):
 
     owner = UserPublicSerializer(source='user', read_only=True)
